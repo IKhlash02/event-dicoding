@@ -73,8 +73,8 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     ksp(libs.room.compiler)
 
-    implementation("com.google.dagger:hilt-android:2.44")
-    ksp("com.google.dagger:hilt-android-compiler:2.44")
+    implementation("com.google.dagger:hilt-android:2.51.1")
+    ksp("com.google.dagger:hilt-android-compiler:2.51.1")
 
-    implementation ("androidx.activity:activity-ktx:1.3.1")
+    implementation ("androidx.activity:activity-ktx:1.9.1")
 }

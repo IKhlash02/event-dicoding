@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.androidDynamicFeature)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("kotlin-parcelize")
     id("com.google.devtools.ksp")
@@ -11,14 +11,12 @@ apply{
 }
 
 android {
-    namespace = "com.example.core"
+    namespace = "com.example.favorites"
     compileSdk = 34
 
     defaultConfig {
         minSdk = 24
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -30,7 +28,8 @@ android {
             )
         }
     }
-    buildFeatures{
+
+    buildFeatures {
         viewBinding = true
     }
 
@@ -41,22 +40,11 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+
 }
 
 dependencies {
+    implementation(project(":app"))
+    implementation(project(":core"))
 
-
-    // Coroutine support
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2" )
-    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.8.4")//liveData
-
-    // room
-    implementation ("androidx.room:room-ktx:2.5.2")
-    implementation ("androidx.room:room-runtime:2.5.2")
-    ksp ("androidx.room:room-compiler:2.5.2")
-
-    // Retrofit and networking
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation ("com.squareup.okhttp3:logging-interceptor:4.11.0")
 }

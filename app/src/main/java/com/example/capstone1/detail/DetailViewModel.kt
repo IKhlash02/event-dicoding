@@ -3,9 +3,8 @@ package com.example.capstone1.detail
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import com.example.capstone1.core.data.Resource
-import com.example.capstone1.core.domain.model.Event
-import com.example.capstone1.core.domain.usecase.EventUseCase
+import com.example.core.domain.model.Event
+import com.example.core.domain.usecase.EventUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

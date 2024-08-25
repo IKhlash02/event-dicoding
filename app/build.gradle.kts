@@ -6,6 +6,10 @@ plugins {
     id ("dagger.hilt.android.plugin")
 }
 
+apply {
+    from("../shared_dependencies.gradle")
+}
+
 android {
     namespace = "com.example.capstone1"
     compileSdk = 34
@@ -41,40 +45,10 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+    dynamicFeatures += setOf(":favorites")
 
 }
 
 dependencies {
-
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-
-
-    implementation (libs.retrofit2.retrofit)
-    implementation (libs.converter.gson)
-    implementation (libs.logging.interceptor)
-
-    //circle image
-    implementation (libs.circleimageview)
-
-    implementation(libs.glide)
-
-    //coroutine support
-    implementation(libs.androidx.lifecycle.viewmodel.ktx) //viewModelScope
-    implementation(libs.androidx.lifecycle.livedata.ktx) //liveData
-    implementation(libs.androidx.room.ktx)
-
-    implementation(libs.androidx.room.runtime)
-    ksp(libs.room.compiler)
-
-    implementation("com.google.dagger:hilt-android:2.51.1")
-    ksp("com.google.dagger:hilt-android-compiler:2.51.1")
-
-    implementation ("androidx.activity:activity-ktx:1.9.1")
+    implementation(project(":core"))
 }

@@ -19,6 +19,7 @@ material = "1.12.0"
 activity = "1.8.0"
 constraintlayout = "2.1.4"
 retrofit = "2.9.0"
+annotation = "1.8.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -39,10 +40,12 @@ androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-view
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomKtx" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
+androidx-annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation" }
 
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
+androidDynamicFeature = { id = "com.android.dynamic-feature", version.ref = "agp" }
 

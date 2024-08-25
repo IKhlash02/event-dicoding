@@ -1,7 +1,7 @@
 package com.example.capstone1.di
 
-import com.example.capstone1.core.domain.usecase.EventInteractor
-import com.example.capstone1.core.domain.usecase.EventUseCase
+import com.example.core.domain.usecase.EventInteractor
+import com.example.core.domain.usecase.EventUseCase
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

@@ -1,7 +1,7 @@
-package com.example.capstone1.home
+package com.example.favorites
 
+import android.annotation.SuppressLint
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
@@ -10,23 +10,26 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.capstone1.detail.DetailActivity
 import com.example.capstone1.R
 import com.example.core.data.Resource
 import com.example.core.ui.EventAdapter
-import com.example.capstone1.databinding.ActivityMainBinding
+import com.example.capstone1.databinding.ActivityFavoriteBinding
+import com.example.capstone1.detail.DetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 
+
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class FavoriteActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
-    private  val homeViewModel: HomeViewModel by viewModels()
+    private  lateinit var binding: ActivityFavoriteBinding
+    private  val favoriteViewModel: FavoriteViewModel by viewModels()
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityFavoriteBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -34,23 +37,8 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-
-        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
-            when(menuItem.itemId) {
-                R.id.menuFavorite -> {
-                    val uri = Uri.parse("example://favorites")
-                    val intent = Intent(Intent.ACTION_VIEW, uri)
-                    startActivity(intent)
-                    true
-                }
-
-                else -> false
-            }
-        }
-
-
 //        val factory = ViewModelFactory.getInstance(this)
-//        homeViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
+//       favoriteViewModel = ViewModelProvider(this, factory)[FavoriteViewModel::class.java]
 
         val eventAdapter = EventAdapter()
         eventAdapter.onItemClick= {
@@ -59,13 +47,14 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        homeViewModel.event.observe(this) { event ->
+        favoriteViewModel.event.observe(this) { event ->
             if (event != null) {
                 when (event) {
                     is Resource.Loading -> showLoading(true)
                     is Resource.Success -> {
                         showLoading(false)
                         eventAdapter.setData(event.data)
+                        eventAdapter.notifyDataSetChanged()
 
                     }
 
@@ -84,6 +73,8 @@ class MainActivity : AppCompatActivity() {
             setHasFixedSize(true)
             adapter = eventAdapter
         }
+
+
     }
 
 

@@ -13,7 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.capstone1.R
-import com.example.capstone1.core.domain.model.Event
+import com.example.core.domain.model.Event
 
 import com.example.capstone1.databinding.ActivityDetailBinding
 import dagger.hilt.android.AndroidEntryPoint

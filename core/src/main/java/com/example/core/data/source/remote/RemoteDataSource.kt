@@ -9,4 +9,5 @@ import javax.inject.Singleton
 class RemoteDataSource @Inject constructor(private val apiService: ApiService){
 
     suspend fun getAllEvent():List<EventResponse> =   apiService.getList().listEvents
+
 }

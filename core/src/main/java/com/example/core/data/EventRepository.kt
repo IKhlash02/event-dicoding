@@ -24,9 +24,10 @@ class EventRepository @Inject constructor(
 
     override fun getAllEvent(): Flow<Resource<List<Event>>> = flow {
         emit(Resource.Loading())
+        Log.d("hasil", "haha")
         try {
-//            val response = apiService.getList()
             val listEvents = remoteDataSource.getAllEvent()
+            Log.d("hasil", "$listEvents")
 
             if (listEvents.isNotEmpty()) {
                 val mappedData = DataMapper.mapResponsesToDomain(listEvents)

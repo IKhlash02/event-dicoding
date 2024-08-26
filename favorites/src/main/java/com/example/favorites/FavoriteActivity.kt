@@ -15,17 +15,38 @@ import com.example.core.data.Resource
 import com.example.core.ui.EventAdapter
 import com.example.capstone1.databinding.ActivityFavoriteBinding
 import com.example.capstone1.detail.DetailActivity
-import dagger.hilt.android.AndroidEntryPoint
+import com.example.capstone1.di.FavoriteModuleDependencies
+import dagger.hilt.android.EntryPointAccessors
+import javax.inject.Inject
 
 
-@AndroidEntryPoint
 class FavoriteActivity : AppCompatActivity() {
 
     private  lateinit var binding: ActivityFavoriteBinding
-    private  val favoriteViewModel: FavoriteViewModel by viewModels()
+
+    @Inject
+    lateinit var factory: ViewModelFactory
+
+
+    private  val favoriteViewModel: FavoriteViewModel by viewModels {
+        factory
+    }
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
+        DaggerFavoriteComponent.builder()
+            .context(this)
+            .appDependencies(
+                EntryPointAccessors.fromApplication(
+                    applicationContext,
+                    FavoriteModuleDependencies::class.java
+                )
+            )
+            .build()
+            .inject(this)
+
+
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityFavoriteBinding.inflate(layoutInflater)

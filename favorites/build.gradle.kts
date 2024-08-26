@@ -43,6 +43,10 @@ android {
 
 }
 
+hilt{
+    enableExperimentalClasspathAggregation = true
+}
+
 dependencies {
     implementation(project(":app"))
     implementation(project(":core"))

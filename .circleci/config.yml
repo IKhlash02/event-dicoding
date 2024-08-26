@@ -35,9 +35,6 @@ jobs:
           command: ./gradlew lint test
       - store_test_results:
           path: app/build/test-results
-      - run:
-          name: Check Code Coverage
-          command: ./gradlew koverHtmlReport
       - store_artifacts:
           path: build/reports/kover/html
           destination: kover

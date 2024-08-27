@@ -25,7 +25,7 @@ class DatabaseModule {
     fun provideDatabase(@ApplicationContext context: Context): EventDatabase = Room.databaseBuilder(
         context,
         EventDatabase::class.java,
-        "Event.db"
+        "Event"
     ).fallbackToDestructiveMigration()
         .openHelperFactory(factory)
         .build()

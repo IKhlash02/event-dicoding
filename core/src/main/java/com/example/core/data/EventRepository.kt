@@ -27,7 +27,7 @@ class EventRepository @Inject constructor(
         Log.d("hasil", "haha")
         try {
             val listEvents = remoteDataSource.getAllEvent()
-            Log.d("hasil", "$listEvents")
+            Log.d("hasil succes", "$listEvents")
 
             if (listEvents.isNotEmpty()) {
                 val mappedData = DataMapper.mapResponsesToDomain(listEvents)
@@ -36,6 +36,7 @@ class EventRepository @Inject constructor(
                 emit(Resource.Success(emptyList()))
             }
         } catch (e: Exception) {
+            Log.d("hasil error", "$e")
             emit(Resource.Error(e.message.toString()))
         }
     }.flowOn(Dispatchers.IO)
